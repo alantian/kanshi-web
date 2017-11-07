@@ -17,7 +17,6 @@ class App extends Component {
     p = p.replace(/，/g, "，$");
     p = p.replace(/。/g, "。$");
     var ps = p.split('$');
-    console.log(ps);
 
     this.setState({
       poem_sents: ps
@@ -46,7 +45,7 @@ class App extends Component {
 
     if (this.state.poem_sents.length >= 4) {
       poem = (
-        <h1 class="splash-head">
+        <h1 class="splash-head poem">
           <div>
             <p>  {this.state.poem_sents[0]} </p>
             <p>  {this.state.poem_sents[1]} </p>
@@ -82,12 +81,12 @@ class App extends Component {
           <div class="content">
             <div class="content-head is-center">
               <p>
-                藉由<a href="https://openreview.net/forum?id=SyqShMZRb&noteId=SyqShMZRb" target="_blank">此提交論文所提出技術</a>，
-                由 <a href="https://chainer.org/" target="_blank">Chainer</a> 實現，利用<a href="http://ytenx.org/" target="_blank">韻典</a>所提供《廣韻》、《平水韻》以規定平仄押運。
+                藉由<a href="https://openreview.net/forum?id=SyqShMZRb&noteId=SyqShMZRb" target="_blank" rel="noopener noreferrer">此提交論文所提出技術</a>，
+                由 <a href="https://chainer.org/" target="_blank" rel="noopener noreferrer">Chainer</a> 實現，利用<a href="http://ytenx.org/" target="_blank" rel="noopener noreferrer">韻典</a>所提供《廣韻》、《平水韻》以規定平仄押運。
               </p>
               <p>
-                在線 Demo 基於 <a href="https://reactjs.org/" target="_blank">React</a> 構建，
-                使用 <a href="https://purecss.io">Pure CSS</a>。
+                在線 Demo 基於 <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a> 構建，
+                使用 <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>。
               </p>
             </div>
           </div>
