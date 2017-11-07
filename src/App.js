@@ -55,8 +55,8 @@ class App extends Component {
 
   setPoem(poem) {
     var p = poem;
-    p = p.replace(/，/g, "，$");
-    p = p.replace(/。/g, "。$");
+    p = p.replace(/，/g, "$");
+    p = p.replace(/。/g, "$");
     var ps = p.split('$');
 
     this.setState({

@@ -20,7 +20,7 @@ class Content extends Component {
         </p>
         <p>
           Online demo is implemented with <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a>,
-          with sytle sheets from <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>.
+          with sytle sheets from <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>. Better viewed with <a href="https://www.google.com/get/noto/help/cjk/">Noto Sans CJK</a>.
         </p>
       </div>
     );
@@ -33,7 +33,7 @@ class Content extends Component {
         </p>
         <p>
           在線 Demo 基於 <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a> 構建，
-          使用 <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>。
+          使用 <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>。爲最佳顯示效果請安裝 <a href="https://www.google.com/get/noto/help/cjk/">Noto Sans CJK</a> 字體。
         </p>
       </div>
     );
