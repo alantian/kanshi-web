@@ -1,15 +1,56 @@
 import React, { Component } from 'react';
 import './App.css';
 import Config from './Config.js';
+import NavBar from './NavBar.js';
+import Content from './Content.js';
+
+import { IntlProvider, addLocaleData, FormattedMessage } from "react-intl";
+import zh_locale from './locale/zh_locale';
+import en_locale from './locale/en_locale';
+import en from "react-intl/locale-data/en";
+import zh from "react-intl/locale-data/zh";
+addLocaleData([...en,...zh,]);
+
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {poem_sents: []};
+    this.state = {
+      poem_sents: [],
+      locale : this.chooseDefaultLocale(),
+    };
 
     this.setPoem = this.setPoem.bind(this);
     this.generateHandler = this.generateHandler.bind(this);
+  }
+
+  chooseDefaultLocale(){
+      switch(navigator.language.slice(0,2)){
+          case 'en':
+              return 'en';
+          case 'zh':
+              return 'zh';
+          default:
+              return 'en';
+      }
+  }
+
+  getLocaleMessage(){
+        switch(this.state.locale){
+            case 'en':
+                return en_locale;
+            case 'zh':
+                return zh_locale;
+            default:
+                return en_locale;
+        }
+    }
+
+  handleLocaleChange(newLocale){
+    this.setState({
+        locale: newLocale,
+    });
   }
 
   setPoem(poem) {
@@ -60,40 +101,35 @@ class App extends Component {
       )
     }
     return (
-      <div class="with-chinese">
-        <div class="splash-container">
-          <div class="splash">
-            <p class="splash-subhead">
-              基於深度網絡、符合平仄押韻的五言絕句生成系統。
-            </p>
 
-            <p>
-              <a class="pure-button pure-button-primary button-xlarge" onClick={this.generateHandler}>
-                點此唸兩句詩
-              </a>
-            </p>
+      <IntlProvider
+        locale={this.state.locale}
+        messages={this.getLocaleMessage()}
+      >
 
-            {poem}
-          </div>
-        </div>
+        <div class="with-chinese">
 
-        <div class="content-wrapper">
-          <div class="content">
-            <div class="content-head is-center">
-              <p>
-                藉由<a href="https://openreview.net/forum?id=SyqShMZRb&noteId=SyqShMZRb" target="_blank" rel="noopener noreferrer">此提交論文所提出技術</a>，
-                由 <a href="https://chainer.org/" target="_blank" rel="noopener noreferrer">Chainer</a> 實現，利用<a href="http://ytenx.org/" target="_blank" rel="noopener noreferrer">韻典</a>所提供《廣韻》、《平水韻》以規定平仄押運。
+          <NavBar onLocaleChange={nl=>this.handleLocaleChange(nl)} />
+
+          <div class="splash-container">
+            <div class="splash">
+              <p class="splash-subhead">
+                <FormattedMessage id={'intro'}/>
               </p>
+
               <p>
-                在線 Demo 基於 <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a> 構建，
-                使用 <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>。
+                <a class="pure-button pure-button-primary button-xlarge" onClick={this.generateHandler}>
+                  <FormattedMessage id={'generate_poem'}/>
+                </a>
               </p>
+              {poem}
             </div>
           </div>
+
+          <Content locale={this.state.locale}/>
         </div>
-      </div>
 
-
+      </IntlProvider>
 
     );
   }
