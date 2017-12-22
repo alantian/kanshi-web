@@ -293,7 +293,21 @@ a.pure-button-primary {
 For Chinese typesetting
 */
 
-.with-chinese {
+.ui-zh {
+  line-height: 1.7em;
+  text-align: justify center;
+  text-justify: inter-ideographic; /*IE*/
+  font-family: "Noto Sans", "Noto Sans CJK KR",  "Noto Sans CJK TC", sans-serif;
+}
+
+.ui-ja {
+  line-height: 1.7em;
+  text-align: justify center;
+  text-justify: inter-ideographic; /*IE*/
+  font-family: "Noto Sans", "Noto Sans CJK JP",  "Noto Sans CJK TC", sans-serif;
+}
+
+.ui-en {
   line-height: 1.7em;
   text-align: justify center;
   text-justify: inter-ideographic; /*IE*/
@@ -301,7 +315,22 @@ For Chinese typesetting
 }
 
 .poem {
-  line-height: 0.5em;
+  line-height: 0.8em;
+  /* font-family: "Noto Sans", "Noto Sans CJK KR",  "Noto Sans CJK TC", sans-serif; */
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+}
+
+.poem-inner-wrapper {
+  margin: auto;
+  margin-top: 10%; /* 100%-80%/2 */
+}
+
+.poem-outer-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 a {

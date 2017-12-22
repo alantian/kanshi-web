@@ -7,49 +7,56 @@ import Content from './Content.js';
 import { IntlProvider, addLocaleData, FormattedMessage } from "react-intl";
 import zh_locale from './locale/zh_locale';
 import en_locale from './locale/en_locale';
+import ja_locale from './locale/ja_locale';
 import en from "react-intl/locale-data/en";
 import zh from "react-intl/locale-data/zh";
-addLocaleData([...en,...zh,]);
+import ja from "react-intl/locale-data/ja";
+addLocaleData([...en,...zh,...ja]);
 
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+
+    this.langcode_to_locale = {'en': en_locale, 'zh': zh_locale, 'ja': ja_locale};
+    this.default_langcode = 'en';
+    this.default_locale = en_locale;
+    this.langcode_to_ui_div_class = {'en': 'ui-en', 'zh': 'ui-zh', 'ja': 'ui-ja'};
+    this.default_ui_div_class = 'ui-en';
+
+    this.chooseDefaultLocale = this.chooseDefaultLocale.bind(this);
+    this.getLocaleMessage = this.getLocaleMessage.bind(this);
+    this.getUIDivName = this.getUIDivName.bind(this);
+    this.handleLocaleChange = this.handleLocaleChange.bind(this);
+    this.setPoem = this.setPoem.bind(this);
+    this.generateHandler = this.generateHandler.bind(this);
+
     this.state = {
       poem_sents: [],
       locale : this.chooseDefaultLocale(),
+      ui_div_name: this.getUIDivName(this.chooseDefaultLocale()),
     };
 
-    this.setPoem = this.setPoem.bind(this);
-    this.generateHandler = this.generateHandler.bind(this);
   }
 
   chooseDefaultLocale(){
-      switch(navigator.language.slice(0,2)){
-          case 'en':
-              return 'en';
-          case 'zh':
-              return 'zh';
-          default:
-              return 'en';
-      }
+    var langcode = navigator.language.slice(0,2);
+    return (langcode in this.langcode_to_locale) ? langcode : this.default_locale;
   }
 
-  getLocaleMessage(){
-        switch(this.state.locale){
-            case 'en':
-                return en_locale;
-            case 'zh':
-                return zh_locale;
-            default:
-                return en_locale;
-        }
-    }
+  getLocaleMessage() {
+    return this.langcode_to_locale[this.state.locale] || this.default_locale;
+  }
+
+  getUIDivName(langcode) {
+    return this.langcode_to_ui_div_class[langcode] || this.default_ui_div_class;
+  }
 
   handleLocaleChange(newLocale){
     this.setState({
         locale: newLocale,
+        ui_div_name: this.getUIDivName(newLocale),
     });
   }
 
@@ -86,20 +93,25 @@ class App extends Component {
 
     if (this.state.poem_sents.length >= 4) {
       poem = (
-        <h1 class="splash-head poem">
-          <div>
-            <p>  {this.state.poem_sents[0]} </p>
-            <p>  {this.state.poem_sents[1]} </p>
-            <p>  {this.state.poem_sents[2]} </p>
-            <p>  {this.state.poem_sents[3]} </p>
+        <div class="poem-outer-wrapper">
+          <div class="poem-inner-wrapper">
+            <h1 class="splash-head poem">
+              <div>
+                <p>  {this.state.poem_sents[0]} </p>
+                <p>  {this.state.poem_sents[1]} </p>
+                <p>  {this.state.poem_sents[2]} </p>
+                <p>  {this.state.poem_sents[3]} </p>
+              </div>
+            </h1>
           </div>
-        </h1>
+        </div>
       )
     } else {
       poem = (
         <p>  </p>
       )
     }
+
     return (
 
       <IntlProvider
@@ -107,7 +119,7 @@ class App extends Component {
         messages={this.getLocaleMessage()}
       >
 
-        <div class="with-chinese">
+        <div class={this.state.ui_div_name}>
 
           <NavBar onLocaleChange={nl=>this.handleLocaleChange(nl)} />
 
@@ -122,6 +134,7 @@ class App extends Component {
                   <FormattedMessage id={'generate_poem'}/>
                 </a>
               </p>
+
               {poem}
             </div>
           </div>
