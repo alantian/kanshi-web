@@ -246,16 +246,18 @@ a.pure-button-primary {
     /* We can align the menu header to the left, but float the
     menu items to the right. */
     .home-menu {
-        text-align: left;
+        /* text-align: left; */
     }
-        .home-menu ul {
-            float: right;
-        }
+    .home-menu ul {
+        float: right;
+    }
 
     /* We increase the height of the splash-container */
-/*    .splash-container {
+    /*
+    .splash-container {
         height: 500px;
-    }*/
+    }
+    */
 
     /* We decrease the width of the .splash, since we have more width
     to work with */
@@ -281,8 +283,8 @@ a.pure-button-primary {
  * On desktops and other large devices, we want to over-ride some
  * of the mobile and tablet styles.
  */
+
 @media (min-width: 78em) {
-    /* We increase the header font size even more */
     .splash-head {
         font-size: 300%;
     }
@@ -314,23 +316,28 @@ For Chinese typesetting
   font-family: "Noto Sans", "Noto Sans CJK KR",  "Noto Sans CJK TC", sans-serif;
 }
 
-.poem {
+.poem-rl {
   line-height: 0.8em;
-  /* font-family: "Noto Sans", "Noto Sans CJK KR",  "Noto Sans CJK TC", sans-serif; */
+
   -webkit-writing-mode: vertical-rl;
+     -moz-writing-mode: vertical-rl;
       -ms-writing-mode: tb-rl;
           writing-mode: vertical-rl;
 }
 
+.poem {
+  line-height: 0.8em;
+}
+
 .poem-inner-wrapper {
   margin: auto;
-  margin-top: 10%; /* 100%-80%/2 */
 }
 
 .poem-outer-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  direction: ltr;
+  justify-content: space-between;
 }
 
 a {

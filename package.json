@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://alantian.github.io/kanshi-web",
   "dependencies": {
+    "detect-browser": "^2.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-intl": "^2.4.0",

@@ -89,28 +89,49 @@ class App extends Component {
   }
 
   render() {
-    let poem = null;
 
+    /* Only chrome / opera on desktop show vertial text correctly now. */
+    const { detect } = require('detect-browser');
+    const browser = detect();
+    console.log(browser);
+    var poem_class = "poem";
+    if (browser && browser.os !== "iOS") {
+      switch (browser.name) {
+        case 'chrome':
+        case 'opera':
+          poem_class = "poem-rl";
+          break;
+        default:
+      }
+    }
+    poem_class = "splash-head " + poem_class;
+
+    var poem_content = null;
     if (this.state.poem_sents.length >= 4) {
-      poem = (
-        <div class="poem-outer-wrapper">
-          <div class="poem-inner-wrapper">
-            <h1 class="splash-head poem">
-              <div>
-                <p>  {this.state.poem_sents[0]} </p>
-                <p>  {this.state.poem_sents[1]} </p>
-                <p>  {this.state.poem_sents[2]} </p>
-                <p>  {this.state.poem_sents[3]} </p>
-              </div>
-            </h1>
+      poem_content = (
+        <div class={poem_class}>
+          <div>
+            <p>  {this.state.poem_sents[0]} </p>
+            <p>  {this.state.poem_sents[1]} </p>
+            <p>  {this.state.poem_sents[2]} </p>
+            <p>  {this.state.poem_sents[3]} </p>
           </div>
         </div>
       )
     } else {
-      poem = (
-        <p>  </p>
+      poem_content = (
+        <div> </div>
       )
     }
+
+    var poem = null;
+    poem = (
+      <div class="poem-outer-wrapper">
+        <div class="poem-inner-wrapper">
+          {poem_content}
+        </div>
+      </div>
+    )
 
     return (
 
