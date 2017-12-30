@@ -3,6 +3,7 @@ import './App.css';
 import Config from './Config.js';
 import NavBar from './NavBar.js';
 import Content from './Content.js';
+import twitter_bird_logo from './twitter_bird_logo.svg'
 
 import { IntlProvider, addLocaleData, FormattedMessage } from "react-intl";
 import zh_locale from './locale/zh_locale';
@@ -67,7 +68,8 @@ class App extends Component {
     var ps = p.split('$');
 
     this.setState({
-      poem_sents: ps
+      poem_sents: ps,
+      poem_full: poem,
     });
   }
 
@@ -106,7 +108,7 @@ class App extends Component {
     }
     poem_class = "splash-head " + poem_class;
 
-    var poem_content = null;
+    var poem_content = null, share_content = null;
     if (this.state.poem_sents.length >= 4) {
       poem_content = (
         <div class={poem_class}>
@@ -118,19 +120,41 @@ class App extends Component {
           </div>
         </div>
       )
+
+      share_content = (
+        <a
+          class="pure-button pure-button-primary button-xlarge twitter-share-button"
+          href={
+            "https://twitter.com/intent/tweet?"
+            + "text="
+            + encodeURIComponent("「" + this.state.poem_full + "」" + " Automatically created by Five-syllable Chinese Quatrain Generator #KanshiGenerator :")
+            + "&url="
+            + encodeURIComponent("https://alantian.github.io/kanshi-web")
+          }
+          target="_blank" rel="noopener noreferrer"
+        >
+          <img src={twitter_bird_logo} alt="Twitter Logo" class="twitter-logo" />
+          <FormattedMessage id={'share'}/>
+        </a>
+      )
     } else {
       poem_content = (
         <div> </div>
       )
     }
 
-    var poem = null;
+    var poem = null, share = null;
     poem = (
       <div class="poem-outer-wrapper">
         <div class="poem-inner-wrapper">
           {poem_content}
         </div>
       </div>
+    )
+    share = (
+      <p>
+        {share_content}
+      </p>
     )
 
     return (
@@ -156,7 +180,10 @@ class App extends Component {
                 </a>
               </p>
 
+              {share}
+
               {poem}
+
             </div>
           </div>
 

@@ -21,7 +21,7 @@ class Content extends Component {
           </p>
           <p>
             Online demo is implemented with <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a>,
-            with sytle sheets from <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>. Better viewed with <a href="https://www.google.com/get/noto/help/cjk/">Noto Sans CJK</a>.
+            with sytle sheets from <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>. Better viewed with <a href="https://www.google.com/get/noto/help/cjk/">Noto Sans CJK</a> and <a href="https://www.google.com/chrome/"> Google Chrome</a>.
           </p>
         </div>
       ),
@@ -34,7 +34,7 @@ class Content extends Component {
           </p>
           <p>
             在線 Demo 基於 <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a> 構建，
-            使用 <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>。爲最佳顯示效果請安裝 <a href="https://www.google.com/get/noto/help/cjk/">Noto Sans CJK</a> 字體。
+            使用 <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a>。爲最佳顯示效果請使用 <a href="https://www.google.com/get/noto/help/cjk/">Noto Sans CJK 字體</a> 以及 <a href="https://www.google.com/chrome/"> Google Chrome 瀏覽器 </a>。
           </p>
         </div>
       ),
@@ -49,7 +49,7 @@ class Content extends Component {
           <p>
           オンラインデモは <a href="https://reactjs.org/ " target="_blank" rel="noopener noreferrer">React</a> で作られ、
           <a href="https://purecss.io" target="_blank" rel="noopener noreferrer">Pure CSS</a> を使用している、
-          表示を最適化するには<a href="https://www.google.com/get/noto/help/cjk/"> Noto Sans CJK 字体</a>をインストールしてください。
+          表示を最適化するには<a href="https://www.google.com/get/noto/help/cjk/"> Noto Sans CJK 字体</a> と <a href="https://www.google.com/chrome/"> Google Chrome </a> をインストールしてください。
           </p>
         </div>
       )

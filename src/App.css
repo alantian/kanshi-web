@@ -343,3 +343,8 @@ For Chinese typesetting
 a {
     color: inherit;
 }
+
+.twitter-logo {
+  width: 21px;
+  padding-right: 5px;
+}
